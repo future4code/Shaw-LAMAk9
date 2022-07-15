@@ -1,15 +1,15 @@
-import { userTableName } from "../model/TableNames";
-import { User } from "../model/User";
-import { UserDataInterface } from "../model/UserDataInterface";
-import { GetUserResponse } from "../types/getUserResponse";
-import { BaseDatabase } from "./BaseDatabase";
+import { Band } from "../model/Band"
+import { BandDataInterface } from "../model/BandDataInterface"
+import { bandTableName } from "../model/TableNames"
+import { GetBandResponse } from "../types/getBandResponse"
+import { BaseDatabase } from "./BaseDatabase"
 
-export default class UserData extends BaseDatabase implements UserDataInterface {
-    private TABLE_NAME = userTableName
-    insert = async (user: User) => {
+export default class BandData extends BaseDatabase implements BandDataInterface {
+    private TABLE_NAME = bandTableName
+    insert = async (band: Band) => {
         try {
             await this.connection(this.TABLE_NAME)
-                .insert(user)
+                .insert(band)
         } catch (error) {
             if (error instanceof Error) {
                 throw new Error(error.message)
@@ -19,10 +19,10 @@ export default class UserData extends BaseDatabase implements UserDataInterface 
         }
     }
 
-    getUserByEmail = async (email: string) => {
+    getBandByName = async (name: string) => {
         try {
-            const queryResult: GetUserResponse[] = await this.connection(this.TABLE_NAME)
-                .where({ email })
+            const queryResult: GetBandResponse[] = await this.connection(this.TABLE_NAME)
+                .where({ name })
 
             return queryResult[0]
         } catch (error) {
@@ -34,9 +34,9 @@ export default class UserData extends BaseDatabase implements UserDataInterface 
         }
     }
 
-    getUserById = async (id: string) => {
+    getBandById = async (id: string) => {
         try {
-            const queryResult: GetUserResponse[] = await this.connection(this.TABLE_NAME)
+            const queryResult: GetBandResponse[] = await this.connection(this.TABLE_NAME)
                 .where({ id })
 
             return queryResult[0]

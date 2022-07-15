@@ -1,9 +1,9 @@
 import * as jwt from "jsonwebtoken";
-import { AuthenticationData } from "../types/user";
+import { AuthenticationData } from "../types/authData";
 
 export class Authenticator {
 
-    static generateToken(info: AuthenticationData): string{
+    generateToken(info: AuthenticationData): string{
 
         const token = jwt.sign(
             info,
@@ -13,7 +13,7 @@ export class Authenticator {
         return token;
     }
 
-    static getTokenData(token: string): AuthenticationData {
+    getTokenData(token: string): AuthenticationData {
 
         const payload = jwt.verify(
             token,
