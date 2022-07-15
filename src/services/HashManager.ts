@@ -2,7 +2,7 @@ import * as bcrypt from "bcryptjs";
 
 export class HashManager {
     
-   static async hash(s: string): Promise<string>{
+   async hash(s: string): Promise<string>{
         //para esconder o texto precisamos:
         //do plaintext (que é nosso parametro s)
         //do nosso cost (que é o quanto vamos demorar pra esconder.
@@ -17,7 +17,7 @@ export class HashManager {
         return cypherText;
     }
 
-    static async compare(plaintext: string, hash: string): Promise<boolean>{
+    async compare(plaintext: string, hash: string): Promise<boolean>{
         const hashCompare:boolean = await bcrypt.compare(plaintext, hash);
         return hashCompare;
     }
