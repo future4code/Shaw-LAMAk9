@@ -1,10 +1,9 @@
-import UserData from "../data/UserData";
 import { ConflictError } from "../errors/ConflictError";
 import { CustomError } from "../errors/CustomError";
 import { InvalidInputError } from "../errors/InvalidInputError";
 import { NotFoundError } from "../errors/NotFoundError";
 import { User, UserRole } from "../model/User";
-import { UserDataInterface } from "../model/UserDataInterface";
+import { UserDataInterface } from "../types/UserDataInterface";
 import { Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";

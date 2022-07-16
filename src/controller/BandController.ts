@@ -21,9 +21,9 @@ export default class BandController{
         }
 
         try {
-            this.bandBusiness.register(input)
+            const message = await this.bandBusiness.register(input)
 
-            res.status(201).send({ message: "Band registered successfully."})
+            res.status(201).send({ message })
         } catch (error) {
             if (error instanceof Error) {
                 return res.status(400).send(error.message)

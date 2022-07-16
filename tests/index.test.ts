@@ -28,18 +28,20 @@ describe("Tests on band register", () => {
         }
     })
     
-    // test("Should be successfull", async () => {
-    //     expect.assertions(0)
-    //     try {
-    //         const input = {
-    //             name: 'Paraamor',
-    //             musicGenre: 'pop-rock',
-    //             responsible: 'Matesu',
-    //             token: 'token'
-    //         }
-    //         await bandBusiness.register(input)
-    //     } catch (error) {
-    //         expect(error.message).toBe('User must be loged in for access.')
-    //     }
-    // })
+    test("Should be successfull", async () => {
+        expect.assertions(1)
+        try {
+            const input = {
+                name: 'Paraamor',
+                musicGenre: 'pop-rock',
+                responsible: 'Matesu',
+                token: 'token'
+            }
+            const message = await bandBusiness.register(input)
+
+            expect(message).toBe("Band registered successfully.")
+        } catch (error) {
+            console.log('error: ', error.message);
+        }
+    })
 })

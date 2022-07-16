@@ -1,6 +1,6 @@
 import { userTableName } from "../model/TableNames";
 import { User } from "../model/User";
-import { UserDataInterface } from "../model/UserDataInterface";
+import { UserDataInterface } from "../types/UserDataInterface";
 import { GetUserResponse } from "../types/getUserResponse";
 import { BaseDatabase } from "./BaseDatabase";
 

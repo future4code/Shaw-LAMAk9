@@ -1,5 +1,5 @@
 import { User } from "../../src/model/User";
-import { UserDataInterface } from "../../src/model/UserDataInterface";
+import { UserDataInterface } from "../../src/types/UserDataInterface";
 import { userResponseMocks, userResponseMocks2 } from "./userResponseMock";
 
 export class UserDataMock implements UserDataInterface {

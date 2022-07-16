@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "clear && ts-node-dev ./src/index.ts",
-    "start": "tsc && node ./build/index.js",
+    "start": "tsc && node ./build/src/index.js",
     "test": "clear && echo \"Running tests...\" && jest",
-    "migrations": "tsc && node ./build/data/migrations/migrations.js"
+    "migrations": "tsc && node ./build/src/data/migrations/migrations.js"
   },
   "keywords": [],
   "author": "",

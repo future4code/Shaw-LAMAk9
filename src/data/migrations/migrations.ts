@@ -13,14 +13,14 @@ class Migrations extends BaseDatabase {
                     email VARCHAR(255) NOT NULL UNIQUE,
                     password VARCHAR(255) NOT NULL,
                     role VARCHAR(255) NOT NULL DEFAULT "NORMAL"
-                )
+                );
         
                 CREATE TABLE IF NOT EXISTS ${bandTableName} (
                     id VARCHAR(255) PRIMARY KEY,
                     name VARCHAR(255) UNIQUE NOT NULL,
                     music_genre VARCHAR(255) NOT NULL,
                     responsible VARCHAR(255) UNIQUE NOT NULL 
-                )
+                );
         
                 CREATE TABLE IF NOT EXISTS ${showTableName} (
                     id VARCHAR(255) PRIMARY KEY,
@@ -29,7 +29,7 @@ class Migrations extends BaseDatabase {
                     end_time INT NOT NULL,
                     band_id VARCHAR(255) NOT NULL,
                     FOREIGN KEY(band_id) REFERENCES ${bandTableName}(id)
-                )
+                );
 
             `)
                 .then(() => { console.log("Tables created") })

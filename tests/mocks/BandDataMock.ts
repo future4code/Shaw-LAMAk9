@@ -1,10 +1,12 @@
 import { Band } from "../../src/model/Band"
-import { BandDataInterface } from "../../src/model/BandDataInterface"
+import { BandDataInterface } from "../../src/types/BandDataInterface"
 import { bandResponseMocks, bandResponseMocks2 } from "./bandResponseMock"
 
 export class BandDataMock implements BandDataInterface {
     
-    insert = async (band: Band) => {}
+    insert = async (band: Band) => {
+        return { id: "id_mock" }
+    }
 
     getBandByName = async (name: string) => {
         switch(name){
@@ -18,6 +20,17 @@ export class BandDataMock implements BandDataInterface {
     }
 
     getBandById = async (id: string) => {
+        switch(id){
+            case "id_mock1":
+               return bandResponseMocks
+            case "id_mock2":
+               return bandResponseMocks2
+            default:
+               undefined
+        }
+    }
+
+    getBandByResponsible = async (id: string) => {
         switch(id){
             case "id_mock1":
                return bandResponseMocks

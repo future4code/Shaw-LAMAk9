@@ -7,8 +7,8 @@ import { ConflictError } from "../errors/ConflictError";
 import { Band } from "../model/Band";
 import { IdGenerator } from "../services/IdGenerator";
 import { GetBandByIdOrNameDTO } from "../types/getBandByIdOrNameDTO";
-import { BandDataInterface } from "../model/BandDataInterface";
-import { UserDataInterface } from "../model/UserDataInterface";
+import { BandDataInterface } from "../types/BandDataInterface";
+import { UserDataInterface } from "../types/UserDataInterface";
 
 export default class BandBusiness {
 
@@ -43,6 +43,10 @@ export default class BandBusiness {
         if (registeredBand) {
             throw new ConflictError("Band with this name already exists.");
         }
+        const samePersonResponsible = await this.bandData.getBandByResponsible(responsible)
+        if (samePersonResponsible) {
+            throw new ConflictError("This person is already responsible for a band.");
+        }
 
         const bandId = this.idGenerator.generateId()
 
@@ -53,7 +57,10 @@ export default class BandBusiness {
             responsible
         )
 
-        await this.bandData.insert(band)
+        const response = await this.bandData.insert(band)        
+        const message = response.id === bandId ? "Band registered successfully." : "Error on database response."
+
+        return message
     }
 
     getBandByIdOrName = async (input: GetBandByIdOrNameDTO) => {
@@ -75,7 +82,7 @@ export default class BandBusiness {
         let band
         id ? 
         band = await this.bandData.getBandById(id) :
-        band = await this.bandData.getBandByName(name)
+        band = await this.bandData.getBandByName(name as string)
         
         return band
     }
